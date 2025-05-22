@@ -27,6 +27,7 @@ import Withdraw from './pages/user/Withdraw';
 import PasswordChange from './pages/user/PasswordChange';
 import Inquiry from './pages/user/Inquiry';
 import Notice from './pages/user/Notice';
+import Footer from './components/layout/Footer';
 
 const App = () => {
   return (
@@ -34,46 +35,49 @@ const App = () => {
       <CssBaseline />
       <AuthProvider>
         <Router>
-          <Routes>
-            <Route path="/" element={<Navbar />}>
-              <Route index element={<LandingPage />} />
-              <Route path="about" element={<About />} />
-              <Route path="plans" element={<Plans />} />
-              <Route path="market" element={<ApiMarket />} />
-              <Route path="login" element={<Login />} />
-              <Route path="signup" element={<Signup />} />
-              <Route
-                path="mypage"
-                element={
-                  <PrivateRoute>
-                    <MyPage />
-                  </PrivateRoute>
-                }
-              >
-                <Route index element={<Dashboard />} />
-                <Route path="subscription" element={<SubscriptionHistory />} />
-                <Route path="api" element={<ApiHistory />} />
-                <Route path="payments" element={<Payments />} />
-                <Route path="profile" element={<ProfileEdit />} />
-                <Route path="logout" element={<Logout />} />
-                <Route path="withdraw" element={<Withdraw />} />
-                <Route path="password" element={<PasswordChange />} />
-                <Route path="inquiry" element={<Inquiry />} />
-                <Route path="notice" element={<Notice />} />
+          <>
+            <Routes>
+              <Route path="/" element={<Navbar />}>
+                <Route index element={<LandingPage />} />
+                <Route path="about" element={<About />} />
+                <Route path="plans" element={<Plans />} />
+                <Route path="market" element={<ApiMarket />} />
+                <Route path="login" element={<Login />} />
+                <Route path="signup" element={<Signup />} />
+                <Route
+                  path="mypage"
+                  element={
+                    <PrivateRoute>
+                      <MyPage />
+                    </PrivateRoute>
+                  }
+                >
+                  <Route index element={<Dashboard />} />
+                  <Route path="subscription" element={<SubscriptionHistory />} />
+                  <Route path="api" element={<ApiHistory />} />
+                  <Route path="payments" element={<Payments />} />
+                  <Route path="profile" element={<ProfileEdit />} />
+                  <Route path="logout" element={<Logout />} />
+                  <Route path="withdraw" element={<Withdraw />} />
+                  <Route path="password" element={<PasswordChange />} />
+                  <Route path="inquiry" element={<Inquiry />} />
+                  <Route path="notice" element={<Notice />} />
+                </Route>
               </Route>
-            </Route>
-            {/* 관리자 라우트 */}
-            <Route path="/admin/login" element={<AdminLogin />} />
-            <Route
-              path="/admin/dashboard"
-              element={
-                <AdminRoute>
-                  <AdminDashboard />
-                </AdminRoute>
-              }
-            />
-            <Route path="/admin/*" element={<Navigate to="/admin/dashboard" replace />} />
-          </Routes>
+              {/* 관리자 라우트 */}
+              <Route path="/admin/login" element={<AdminLogin />} />
+              <Route
+                path="/admin/dashboard"
+                element={
+                  <AdminRoute>
+                    <AdminDashboard />
+                  </AdminRoute>
+                }
+              />
+              <Route path="/admin/*" element={<Navigate to="/admin/dashboard" replace />} />
+            </Routes>
+            <Footer />
+          </>
         </Router>
       </AuthProvider>
     </ThemeProvider>
